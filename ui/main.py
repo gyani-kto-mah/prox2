@@ -37,6 +37,7 @@ async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     while True:
         data = await ws.receive_text()
+        print(data)
         if data[0] == 'e':
             pass  # Do some random chikboom here.
         await wsm.broadcast(data)

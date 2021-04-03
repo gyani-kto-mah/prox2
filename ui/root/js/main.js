@@ -21,7 +21,7 @@ ws.onmessage = function(event) {
 		if ( type === 'r' ) {
 			requestHandler(ws_content);
 		
-		} else if ( type === 'R' 
+		} else if ( type === 'R' ) {
 			responseHandler(ws_content);
 
 		} else if ( type === 'e' ) {
@@ -34,6 +34,7 @@ ws.onmessage = function(event) {
 		} else {
 			// Invalid type, logically.
 			invalidHandler(event.data);
+
 		}
 	} catch ( DOMException ) {
 		invalidHandler(event.data);
