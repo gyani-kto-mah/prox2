@@ -1,5 +1,6 @@
 *.pyc
 __pycache__/
-.logs/
+mitm.out
+uvicorn.out
 .venv/
 __dontAdd__/
