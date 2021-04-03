@@ -5,9 +5,28 @@ from typing import List
 from base64 import b64decode, b64encode
 from os.path import isfile
 from fastapi.responses import FileResponse
+from binascii import Error as IncorrectPaddingError
 
 
 app = FastAPI()
+
+
+def encode(ws_type, content):
+    if type(content) != bytes:
+        content = str(content).encode()
+    content = b64encode(content).decode()
+    msg = f'{ws_type}:{content}'
+    return msg
+
+
+def decode(data):
+    if len(data.split(':')) == 2:
+        ws_type, content = data.split(':')
+        try:
+            return ws_type, b64decode(content)
+        except IncorrectPaddingError:
+            return None, None
+    return None, None
 
 
 class WSConnectionManager:
@@ -49,7 +68,19 @@ async def websocket_endpoint(ws: WebSocket, client_id: int):
     try:
         while True:
             data = await ws.receive_text()
-            await wsm.broadcast(f"u:{b64encode(data.encode()).decode()}")
+            ws_type, content = decode(data)
+
+            if not ws_type or not content:
+                await ws.send_text(encode('e', 'Invalid input supplied.'))
+
+            if ws_type == 'r':
+                # TODO: Validate if raw HTTP here (content).
+                # Request the given raw HTTP request.
+                resp = f"FAKE RESP of {content}"
+                await ws.send_text(encode('R', resp))
+                return
+
+            await ws.send_text(encode('u', data))
             # await wsm.send_private_message(f"You sent: {data}", ws)
             # await wsm.broadcast(f"Client #{client_id} sent: {data}")
     except WebSocketDisconnect:
