@@ -1,0 +1,44 @@
+div#main{
+    display: flex;
+}
+
+.raw-http-req {
+    flex: 1;
+    display: block;
+    position: relative;
+    font-family: monospace;
+    line-height: 1.5;
+    height: 98vh;
+    overflow: scroll;
+    border: solid 1px;
+    background-color: #272822; /* from theme background color */
+}
+
+.raw-http-req textarea {
+    background-color: transparent;
+    color: transparent;
+    caret-color: black;
+    padding: 10px;
+    margin: 0px;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.raw-http-req code {
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    margin: 0px;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    background-color: transparent;
+}

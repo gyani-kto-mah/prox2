@@ -1,0 +1,13 @@
+# You may reach form here:
+Contact: https://github.com/gyani-kto-mah/
+Contact: https://facebook.com/gyani.kto.mah/
+Contact: https://twitter.com/gyani_kto_mah/
+Contact: https://instagram.com/gyani_kto_mah/
+
+# A HOF, if someone actually does find a vuln. (might be 404, if no vuln. reported by anyone.)
+Acknowledgments: https://github.com/gyani-kto-mah/prox2/blob/master/HOF.md
+
+# English, Nepali are fine; Hindi will also be accepted.
+Preferred-Languages: en, np
+
+# NOTE: If you find this in the Internet, try to contact the host/server owner and ask him/her to make sure this specific application is hidden well lol.

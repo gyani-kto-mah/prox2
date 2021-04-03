@@ -1,0 +1,6 @@
+mitmproxy
+fastapi
+uvicorn
+pydantic
+websocket-client
+aiofiles

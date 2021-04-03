@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>prox2</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<!-- <link href="css/prism.min.css" rel="stylesheet" /> -->
+    <link href="css/prism-okaidia.min.css" rel="stylesheet" />
+    <link href="css/prism-toolbar.min.css" rel="stylesheet" />
+    <link href="css/prism-line-numbers.min.css" rel="stylesheet" />
+    <link href="css/prism-show-invisibles.min.css" rel="stylesheet" />
+    <!-- <link href="css/style.css" rel="stylesheet" /> -->
+    <!-- <link href="css/prism-live.css" rel="stylesheet" /> -->
+</head>
+<body>
+	<div id="main"></div>
+    <script src="js/prism-core.min.js"></script>
+    <script src="js/prism-http.min.js"></script>
+    <script src="js/prism-line-numbers.min.js"></script>
+    <script src="js/prism-toolbar.min.js"></script>
+    <script src="js/prism-copy-to-clipboard.min.js"></script>
+    <script src="js/prism-show-invisibles.min.js"></script>
+    <!-- <script src="js/prism-live.js"></script>
+    <script src="js/prism-live-http.js"></script> -->
+    <script>
+		var client_id = Date.now()
+        var ws = new WebSocket(`ws://localhost:8000/ws/${client_id}`);
+        ws.onmessage = function(event) {
+        	var data = atob(event.data.split(':')[1]);
+            
+            var main = document.getElementById('main')
+            var div = document.createElement('div')
+            var elem = document.createElement('pre')
+            // var code = document.createElement('textarea')
+            var code = document.createElement('code')
+
+
+            elem.setAttribute('data-download-link', '')
+            // code.classList.add('prism-live')
+            code.classList.add('language-http')
+            div.classList.add('raw-http-req') // TODO: Only if it's a request.
+
+            // code.value = data;
+            code.appendChild(document.createTextNode(data))
+            elem.appendChild(code)
+
+            div.appendChild(elem)
+            
+            main.appendChild(div)
+
+            Prism.highlightAll()
+            // Prism.highlightElement(document.querySelector('code'));
+        };
+        // function sendMessage(event) {
+        //     var input = document.getElementById("messageText")
+        //     ws.send(input.value)
+        //     input.value = ''
+        //     event.preventDefault()
+        // }
+	</script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
